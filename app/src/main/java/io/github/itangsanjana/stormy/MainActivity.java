@@ -53,5 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void alertUserAboutError() {
+        AlertDialogFragment dialog = new AlertDialogFragment();
+        dialog.show(getFragmentManager(), "error_dialog");
     }
 }
