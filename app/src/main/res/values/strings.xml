@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Stormy</string>
+    <string name="error_title">Oops!</string>
+    <string name="error_message">It did it again.</string>
+    <string name="error_button">Duh!</string>
+    <string name="no_network">No network!</string>
 </resources>
