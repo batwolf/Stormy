@@ -4,11 +4,20 @@ package io.github.itangsanjana.stormy;
  * Created by itangsanjana on 30/03/16.
  */
 public class CurrentWeather {
+    private double mHumidity;
     private String mIcon;
     private long mTime;
     private double mTemperature;
     private double mPrecipChance;
     private String mSummary;
+
+    public double getHumidity() {
+        return mHumidity;
+    }
+
+    public void setHumidity(double humidity) {
+        mHumidity = humidity;
+    }
 
     public String getIcon() {
         return mIcon;
