@@ -1,5 +1,9 @@
 package io.github.itangsanjana.stormy;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 /**
  * Created by itangsanjana on 30/03/16.
  */
@@ -10,6 +14,7 @@ public class CurrentWeather {
     private double mTemperature;
     private double mPrecipChance;
     private String mSummary;
+    private String mTimeZone;
 
     public double getHumidity() {
         return mHumidity;
@@ -29,6 +34,15 @@ public class CurrentWeather {
 
     public long getTime() {
         return mTime;
+    }
+
+    public String getFormattedTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("k:mm");
+        formatter.setTimeZone(TimeZone.getTimeZone(getTimeZone()));
+        Date dateTime = new Date(getTime() * 1000);
+        String timeString = formatter.format(dateTime);
+
+        return timeString;
     }
 
     public void setTime(long time) {
@@ -57,5 +71,13 @@ public class CurrentWeather {
 
     public void setSummary(String summary) {
         mSummary = summary;
+    }
+
+    public String getTimeZone() {
+        return mTimeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        mTimeZone = timeZone;
     }
 }
