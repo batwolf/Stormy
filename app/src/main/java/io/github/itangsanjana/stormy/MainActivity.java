@@ -65,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
                             mCurrentWeather = getCurrentDetails(jsonData);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    updateDisplay();
+                                }
+                            });
                         }
                         else {
                             alertUserAboutError();
@@ -81,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Log.d(TAG, "Code is running!");
+    }
+
+    private void updateDisplay() {
+        mTemperature.setText(mCurrentWeather.getTemperature() + "");
+        mTime.setText("At" + mCurrentWeather.getFormattedTime() + " it will be");
+        mHumidityValue.setText(mCurrentWeather.getHumidity() + "");
+        mPrecipValue.setText(mCurrentWeather.getPrecipChance() + "%");
+        mSummary.setText(mCurrentWeather.getSummary());
     }
 
     private CurrentWeather getCurrentDetails(String jsonData) throws JSONException {
