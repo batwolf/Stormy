@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,7 +24,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.itangsanjana.stormy.R;
 import io.github.itangsanjana.stormy.weather.Current;
+import io.github.itangsanjana.stormy.weather.Day;
 import io.github.itangsanjana.stormy.weather.Forecast;
+import io.github.itangsanjana.stormy.weather.Hour;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -152,9 +155,22 @@ public class MainActivity extends AppCompatActivity {
         Forecast forecast = new Forecast();
 
         forecast.setCurrent(getCurrentDetails(jsonData));
+        forecast.setHourlyForecast(getHourlyForecast(jsonData));
+        forecast.setDailyForecast(getDailyForecast(jsonData));
 
         return forecast;
 
+    }
+
+    private Hour[] getHourlyForecast(String jsonData) throws JSONException {
+        JSONObject forecast = new JSONObject(jsonData);
+        String timezone = forecast.getString("timezone");
+        JSONObject hourly = forecast.getJSONObject("hourly");
+        JSONArray data = hourly.getJSONArray("data");
+    }
+
+    private Day[] getDailyForecast(String jsonData) {
+        return new Day[0];
     }
 
     private Current getCurrentDetails(String jsonData) throws JSONException {
