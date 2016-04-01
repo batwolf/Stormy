@@ -23,6 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.itangsanjana.stormy.R;
 import io.github.itangsanjana.stormy.weather.Current;
+import io.github.itangsanjana.stormy.weather.Forecast;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Current mCurrent;
+    private Forecast mForecast;
 
     @Bind(R.id.textViewTime) TextView mTime;
     @Bind(R.id.textViewTemperature) TextView mTemperature;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         String jsonData = response.body().string();
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
-                            mCurrent = getCurrentDetails(jsonData);
+                            mForecast = parseForecastDetails(jsonData);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -134,14 +135,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplay() {
-        mTemperature.setText(mCurrent.getTemperature() + "");
-        mTime.setText("At" + mCurrent.getFormattedTime() + " it will be");
-        mHumidityValue.setText(mCurrent.getHumidity() + "");
-        mPrecipValue.setText(mCurrent.getPrecipChance() + "%");
-        mSummary.setText(mCurrent.getSummary());
+        Current current = mForecast.getCurrent();
 
-        Drawable drawable = ContextCompat.getDrawable(this, mCurrent.getIconId());
+        mTemperature.setText(current.getTemperature() + "");
+        mTime.setText("At" + current.getFormattedTime() + " it will be");
+        mHumidityValue.setText(current.getHumidity() + "");
+        mPrecipValue.setText(current.getPrecipChance() + "%");
+        mSummary.setText(current.getSummary());
+
+        Drawable drawable = ContextCompat.getDrawable(this, current.getIconId());
         mIcon.setImageDrawable(drawable);
+    }
+
+    private Forecast parseForecastDetails(String jsonData) throws JSONException {
+
+        Forecast forecast = new Forecast();
+
+        forecast.setCurrent(getCurrentDetails(jsonData));
+
+        return forecast;
+
     }
 
     private Current getCurrentDetails(String jsonData) throws JSONException {
