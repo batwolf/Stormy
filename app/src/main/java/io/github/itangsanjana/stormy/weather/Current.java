@@ -1,13 +1,15 @@
-package io.github.itangsanjana.stormy;
+package io.github.itangsanjana.stormy.weather;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import io.github.itangsanjana.stormy.R;
+
 /**
  * Created by itangsanjana on 30/03/16.
  */
-public class CurrentWeather {
+public class Current {
     private double mHumidity;
     private String mIcon;
     private long mTime;

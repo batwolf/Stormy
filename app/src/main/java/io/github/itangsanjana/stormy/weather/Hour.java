@@ -1,4 +1,4 @@
-package io.github.itangsanjana.stormy;
+package io.github.itangsanjana.stormy.weather;
 
 /**
  * Created by itangsanjana on 01/04/16.

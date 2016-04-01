@@ -1,10 +1,12 @@
-package io.github.itangsanjana.stormy;
+package io.github.itangsanjana.stormy.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+
+import io.github.itangsanjana.stormy.R;
 
 /**
  * Created by Itang Sanjana on 29/03/16.
