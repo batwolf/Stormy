@@ -1,15 +1,20 @@
 package io.github.itangsanjana.stormy.weather;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by itangsanjana on 01/04/16.
  */
-public class Hour {
+public class Hour implements Parcelable {
 
     private long mTime;
     private String mSummary;
     private double mTemperature;
     private String mIcon;
     private String mTimezone;
+
+    public Hour() { }
 
     public long getTime() {
         return mTime;
@@ -50,4 +55,38 @@ public class Hour {
     public void setTimezone(String timezone) {
         mTimezone = timezone;
     }
+
+    @Override
+    public int describeContents() {
+        return 0; // Ignore.
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(mTime);
+        dest.writeDouble(mTemperature);
+        dest.writeString(mSummary);
+        dest.writeString(mIcon);
+        dest.writeString(mTimezone);
+    }
+
+    private Hour(Parcel in) {
+        mTime = in.readLong();
+        mTemperature = in.readDouble();
+        mSummary = in.readString();
+        mIcon = in.readString();
+        mTimezone = in.readString();
+    }
+
+    public static final Creator<Hour> CREATOR = new Creator<Hour>() {
+        @Override
+        public Hour createFromParcel(Parcel source) {
+            return new Hour(source);
+        }
+
+        @Override
+        public Hour[] newArray(int size) {
+            return new Hour[size];
+        }
+    };
 }
