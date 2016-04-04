@@ -26,10 +26,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageViewDegree"
         android:src="@drawable/degree"
-        android:layout_below="@+id/textViewTime"
-        android:layout_alignRight="@+id/textViewTemperature"
-        android:layout_alignEnd="@+id/textViewTemperature"
-        android:layout_marginTop="27dp"/>
+        android:layout_alignTop="@+id/textViewTemperature"
+        android:layout_toRightOf="@+id/textViewTemperature"
+        android:layout_toEndOf="@+id/textViewTemperature"
+        android:layout_marginTop="22dp"/>
 
     <TextView
         android:layout_width="wrap_content"
