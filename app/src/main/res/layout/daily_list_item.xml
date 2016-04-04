@@ -25,7 +25,8 @@
         android:src="@drawable/clear_day"
         android:layout_toRightOf="@+id/imageViewCircle"
         android:layout_toEndOf="@+id/imageViewCircle"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="14dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +37,8 @@
         android:textSize="20sp"
         android:layout_toRightOf="@+id/imageViewIcon"
         android:layout_toEndOf="@+id/imageViewIcon"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="14dp"/>
 
     <TextView
         android:layout_width="wrap_content"
