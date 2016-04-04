@@ -5,4 +5,6 @@
     <string name="error_button">Duh!</string>
     <string name="no_network">No network!</string>
     <string name="no_data">No data</string>
+    <string name="this_week_weather">This week\'s weather</string>
+    <string name="today">Today</string>
 </resources>
