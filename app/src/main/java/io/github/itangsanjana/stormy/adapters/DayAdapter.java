@@ -1,10 +1,14 @@
 package io.github.itangsanjana.stormy.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import io.github.itangsanjana.stormy.R;
 import io.github.itangsanjana.stormy.weather.Day;
 
 /**
@@ -37,6 +41,28 @@ public class DayAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+
+        if (convertView == null) {
+//            Brand new.
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.daily_list_item, null);
+            holder = new ViewHolder();
+            holder.imageViewIcon = (ImageView) convertView.findViewById(R.id.imageViewIcon);
+            holder.textViewTemperature = (TextView) convertView.findViewById(R.id.textViewTemperature);
+            holder.textViewDayName = (TextView) convertView.findViewById(R.id.textViewDayName);
+
+            convertView.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
         return null;
+    }
+
+    private static class ViewHolder {
+        ImageView imageViewIcon;
+        TextView textViewTemperature;
+        TextView textViewDayName;
     }
 }
